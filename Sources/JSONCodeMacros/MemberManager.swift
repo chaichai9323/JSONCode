@@ -55,7 +55,11 @@ container.decode(Swift.type(of: self.\(property.name)), jsonKeys: \(property.jso
             if let dv = property.value {
                 res = "self.\(property.name) = (try? \(cmd)) ?? \(dv)"
             } else {
-                res = "self.\(property.name) = try \(cmd)"
+                if property.isOpt {
+                    res = "self.\(property.name) = try? \(cmd)"
+                } else {
+                    res = "self.\(property.name) = try \(cmd)"
+                }
             }
             return res
         }.joined(separator: "\n")

@@ -32,7 +32,7 @@ public extension KeyedDecodingContainer where K == JSONCodeKey {
     func decode<T: Decodable>(_ type: T.Type, jsonKeys keys: [String]) throws -> T {
         
         for k in keys {
-            if let res = try? decodeIfPresent(type, forKey: JSONCodeKey(k)) {
+            if let res = try? decode(type, forKey: JSONCodeKey(k)) {
                 return res
             }
         }
