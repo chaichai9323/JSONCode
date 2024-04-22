@@ -8,6 +8,17 @@
 pod 'JSONCodeSwiftMacro'
 ```
 
+#####
+
+If third-party libraries have dependencies on JSONCodeSwiftMacro, You need to configure 'spec' file
+```
+s.pod_target_xcconfig = {
+    'OTHER_SWIFT_FLAGS' => "-load-plugin-executable $(PODS_ROOT)/JSONCodeSwiftMacro/Macro/release/JSONCodeMacros#JSONCodeMacros"
+}
+  
+s.dependency 'JSONCodeSwiftMacro'
+```
+
 #### Swift Package Manager
 
 ```
