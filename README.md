@@ -5,7 +5,7 @@
 #### Cocoapods
 
 ```
-
+pod 'JSONCodeSwiftMacro'
 ```
 
 #### Swift Package Manager
