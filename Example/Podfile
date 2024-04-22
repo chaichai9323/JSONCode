@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'JSONCode_Example' do
-  pod 'JSONCodeSwiftMacro', :git => 'https://github.com/chaichai9323/JSONCode.git', :branch => "dev"
+  pod 'JSONCodeSwiftMacro', "~> 1.0.0"
 #  pod 'JSONCodeSwiftMacro', :path => '../'
   pod 'OtherLib', :path => 'OtherLib/'
 end

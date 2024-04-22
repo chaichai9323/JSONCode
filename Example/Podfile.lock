@@ -4,25 +4,21 @@ PODS:
     - JSONCodeSwiftMacro
 
 DEPENDENCIES:
-  - JSONCodeSwiftMacro (from `https://github.com/chaichai9323/JSONCode.git`, branch `dev`)
+  - JSONCodeSwiftMacro (~> 1.0.0)
   - OtherLib (from `OtherLib/`)
 
+SPEC REPOS:
+  trunk:
+    - JSONCodeSwiftMacro
+
 EXTERNAL SOURCES:
-  JSONCodeSwiftMacro:
-    :branch: dev
-    :git: https://github.com/chaichai9323/JSONCode.git
   OtherLib:
     :path: OtherLib/
-
-CHECKOUT OPTIONS:
-  JSONCodeSwiftMacro:
-    :commit: 4e20e11a22cc487e764864e2560d682f40b450f3
-    :git: https://github.com/chaichai9323/JSONCode.git
 
 SPEC CHECKSUMS:
   JSONCodeSwiftMacro: 86aef9153f5cb02bd5f9aae16955be1b3183f278
   OtherLib: aec06cf026bbfe46855bf9b7611eafa4171ad5b3
 
-PODFILE CHECKSUM: 5a22eec32775f511634101af2ac3980d148e46f7
+PODFILE CHECKSUM: 0c6ef2e4b4280f8eac5d0ffaca6e592166c8fd1f
 
 COCOAPODS: 1.14.3
