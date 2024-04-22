@@ -1,22 +1,22 @@
 PODS:
-  - JSONCode (1.0.0)
+  - JSONCodeSwiftMacro (1.0.0)
   - OtherLib (0.1.0):
-    - JSONCode
+    - JSONCodeSwiftMacro
 
 DEPENDENCIES:
-  - JSONCode (from `../`)
+  - JSONCodeSwiftMacro (from `../`)
   - OtherLib (from `OtherLib/`)
 
 EXTERNAL SOURCES:
-  JSONCode:
+  JSONCodeSwiftMacro:
     :path: "../"
   OtherLib:
     :path: OtherLib/
 
 SPEC CHECKSUMS:
-  JSONCode: 59455f66c0a22e07b5a510837380dca33f2573da
-  OtherLib: 734a6f71dfc903520b9832ba49ed65a40f0181c5
+  JSONCodeSwiftMacro: acabe0db720b4287c130304afd5d5641aec18e25
+  OtherLib: 15b245d8a1f7e2c8d80155cb5c8afe4142423ee8
 
-PODFILE CHECKSUM: c0b7a6522c7cf28d3d12185838c8a246fd852023
+PODFILE CHECKSUM: ebd72f2729a9a8717bcf9286e60ecd28cecf17cf
 
 COCOAPODS: 1.14.3

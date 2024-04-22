@@ -1,11 +1,11 @@
 import Foundation
-import JSONCode
+import JSONCodeSwiftMacro
 
 @JSONCode
 public class OtherLibProperty {
-    var shadowColor:String?
-    var cornRadious:String?
-    var isClickShadowQuit:Int = 0
-    var animationType:String?
-    var showType:String?
+    var name: String?
+    var addr: String?
+    var age: Int = 0
+    var animation: String?
+    var type: String?
 }

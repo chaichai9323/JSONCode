@@ -177,12 +177,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JSONCode_Example/Pods-JSONCode_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/JSONCode/JSONCode.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONCodeSwiftMacro/JSONCodeSwiftMacro.framework",
 				"${BUILT_PRODUCTS_DIR}/OtherLib/OtherLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONCodeSwiftMacro.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OtherLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

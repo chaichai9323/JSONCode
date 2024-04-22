@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'JSONCode'
+  s.name             = 'JSONCodeSwiftMacro'
   s.version          = '1.0.0'
   s.summary          = 'A short description of JSONCode.'
   
@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
   s.preserve_paths = 'Package.swift', 'Sources/JSONCodeMacros'
   
   script = <<-SCRIPT
-  env -i PATH="$PATH" "$SHELL" -l -c "swift build -c release --package-path \\"$PODS_TARGET_SRCROOT\\" --build-path \\"${PODS_BUILD_DIR}/JSONCode\\""
+  env -i PATH="$PATH" "$SHELL" -l -c "swift build -c release --package-path \\"$PODS_TARGET_SRCROOT\\" --build-path \\"${PODS_BUILD_DIR}/#{s.name}\\""
   SCRIPT
   
   s.script_phase = {
@@ -45,16 +45,10 @@ Pod::Spec.new do |s|
     :execution_position => :before_compile
   }
   
-  cfg = "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/JSONCode/release/JSONCodeMacros#JSONCodeMacros"
-  s.user_target_xcconfig = {
+  cfg = "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/#{s.name}/release/JSONCodeMacros#JSONCodeMacros"
+
+  s.xcconfig = {
     'OTHER_SWIFT_FLAGS' => cfg
   }
-  #  s.pod_target_xcconfig = {
-  #    'OTHER_SWIFT_FLAGS' => cfg,
-  #  }
-  
-#  s.xcconfig = {
-#    'OTHER_SWIFT_FLAGS' => cfg
-#  }
 
 end

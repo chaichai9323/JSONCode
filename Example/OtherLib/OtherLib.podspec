@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
     'OTHER_SWIFT_FLAGS' => "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/JSONCode/release/JSONCodeMacros#JSONCodeMacros"
   }
   
-  s.dependency 'JSONCode'
+  s.dependency 'JSONCodeSwiftMacro'
   
 end

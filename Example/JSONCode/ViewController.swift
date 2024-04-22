@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import JSONCode
+import JSONCodeSwiftMacro
 
 @JSONCode
 struct Info {
