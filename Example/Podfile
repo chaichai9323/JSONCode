@@ -4,5 +4,5 @@ platform :ios, '13.0'
 
 target 'JSONCode_Example' do
   pod 'JSONCodeSwiftMacro', :path => '../'
-  pod 'OtherLib', :path => 'OtherLib/'
+#  pod 'OtherLib', :path => 'OtherLib/'
 end
