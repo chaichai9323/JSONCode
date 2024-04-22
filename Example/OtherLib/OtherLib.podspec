@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source_files = 'OtherLib/Classes/**/*'
   
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS' => "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/JSONCode/release/JSONCodeMacros#JSONCodeMacros"
+    'OTHER_SWIFT_FLAGS' => "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/JSONCodeSwiftMacro/release/JSONCodeMacros#JSONCodeMacros"
   }
   
   s.dependency 'JSONCodeSwiftMacro'
