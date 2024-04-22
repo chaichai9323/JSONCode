@@ -1,0 +1,22 @@
+PODS:
+  - JSONCode (1.0.0)
+  - OtherLib (0.1.0):
+    - JSONCode
+
+DEPENDENCIES:
+  - JSONCode (from `../`)
+  - OtherLib (from `OtherLib/`)
+
+EXTERNAL SOURCES:
+  JSONCode:
+    :path: "../"
+  OtherLib:
+    :path: OtherLib/
+
+SPEC CHECKSUMS:
+  JSONCode: 59455f66c0a22e07b5a510837380dca33f2573da
+  OtherLib: 734a6f71dfc903520b9832ba49ed65a40f0181c5
+
+PODFILE CHECKSUM: c0b7a6522c7cf28d3d12185838c8a246fd852023
+
+COCOAPODS: 1.14.3

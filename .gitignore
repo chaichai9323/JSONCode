@@ -7,3 +7,8 @@ DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
 .swiftpm/xcode/package.xcworkspace
+Example/JSONCode.xcodeproj/project.xcworkspace
+Example/JSONCode.xcodeproj/xcshareddata
+*.xcworkspacedata
+Example/JSONCode.xcworkspace/xcshareddata
+Example/Pods
