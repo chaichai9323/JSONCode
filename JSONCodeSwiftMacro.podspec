@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'JSONCodeSwiftMacro'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of JSONCode.'
+  s.summary          = 'Define a macro. Parse json using the Codable'
   
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   
   s.description      = <<-DESC
-  TODO: Add long description of the pod here.
+  使用swift提供Codable协议解析Json,提供了自定义的key的处理,如果模型是class类型且是子类的话声明成JSONCodeSub，否则声明成JSONCode
   DESC
   
   s.homepage         = 'https://github.com/chaichai9323/JSONCode'

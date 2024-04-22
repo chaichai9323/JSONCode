@@ -39,4 +39,29 @@ class Student: Person {
         "学生名字:\(name), 年级:\(grade), 班级:\(clbum)"
     }
 }
+
+let js = """
+{
+    "mingzi": "Terry",
+    "nj": "3年级",
+    "bj": 1
+}
+"""
+
+let js2 = """
+    {
+        "name": "Terry",
+        "grade": "3年级",
+        "bj": 1
+    }
+"""
+
+if let p = try? JSONDecoder().decode(Student.self, from: js.data(using: .utf8)!){
+    print(p.desc)//学生名字:Terry, 年级:3年级, 班级:1
+}
+        
+if let p = try? JSONDecoder().decode(Student.self, from: js2.data(using: .utf8)!) {
+    print(p.desc)//学生名字:Terry, 年级:3年级, 班级:1
+}
+
 ```
