@@ -178,10 +178,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JSONCode_Example/Pods-JSONCode_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JSONCodeSwiftMacro/JSONCodeSwiftMacro.framework",
+				"${BUILT_PRODUCTS_DIR}/OtherLib/OtherLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONCodeSwiftMacro.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OtherLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -353,6 +355,7 @@
 				INFOPLIST_FILE = JSONCode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -load-plugin-executable $(PODS_ROOT)/JSONCodeSwiftMacro/Macro/release/JSONCodeMacros#JSONCodeMacros";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -369,6 +372,7 @@
 				INFOPLIST_FILE = JSONCode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -load-plugin-executable $(PODS_ROOT)/JSONCodeSwiftMacro/Macro/release/JSONCodeMacros#JSONCodeMacros";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

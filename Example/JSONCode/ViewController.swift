@@ -8,7 +8,6 @@
 
 import UIKit
 import JSONCodeSwiftMacro
-/*
 import OtherLib
 
 @JSONCode
@@ -19,18 +18,19 @@ struct Info {
 }
 
 @JSONCode
-struct Person {
+struct Person: Codable {
     @JSONCodeKey("mz")
     var name: String?
     
     var info: Info?
 }
-*/
+
 class ViewController: UIViewController {
 
     let js = """
 {
     "name": "chaichai",
+    "animation": "pop",
     "info": {
         "phone": "138 xxxx xxxx",
         "address": "chengdu"
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        /*
+        
         guard var p = try? JSONDecoder().decode(Person.self, from: js.data(using: .utf8)!) else {
             msgLab.text = "json不能解码"
             return
@@ -64,9 +64,9 @@ class ViewController: UIViewController {
     func testOther() {
         
         if let p = try? JSONDecoder().decode(OtherLibProperty.self, from: js.data(using: .utf8)!) {
-            print(p.name)
+            print(p.name ?? "空名字")
         }
-        */
+        
     }
     
     override func didReceiveMemoryWarning() {
