@@ -35,20 +35,18 @@ Pod::Spec.new do |s|
   
   s.preserve_paths = 'Package.swift', 'Sources', "Tests"
   
-#  script = <<-SCRIPT
-#  env -i PATH="$PATH" "$SHELL" -l -c "swift build -c release --package-path \\"$PODS_TARGET_SRCROOT\\" --build-path \\"${PODS_BUILD_DIR}/#{s.name}\\""
-#  SCRIPT
-#  
-#  s.script_phase = {
-#    :name => 'Build JSONCode macro plugin',
-#    :script => script,
-#    :execution_position => :before_compile
-#  }
-#  
-#  cfg = "-Xfrontend -load-plugin-executable -Xfrontend $(PODS_BUILD_DIR)/#{s.name}/release/JSONCodeMacros#JSONCodeMacros"
-#
-#  s.xcconfig = {
-#    'OTHER_SWIFT_FLAGS' => cfg
-#  }
+ script = <<-SCRIPT
+ env -i PATH="$PATH" "$SHELL" -l -c "swift build -v -c release --package-path $PODS_TARGET_SRCROOT --scratch-path $PODS_TARGET_SRCROOT/Macro"
+ SCRIPT
+ 
+ s.script_phase = {
+   :name => 'Build JSONCode macro plugin',
+   :script => script,
+   :execution_position => :before_compile
+ }
+
+ s.xcconfig = {
+   'OTHER_SWIFT_FLAGS' => "-load-plugin-executable $(PODS_ROOT)/#{s.name}/Macro/release/JSONCodeMacros#JSONCodeMacros"
+ }
 
 end
