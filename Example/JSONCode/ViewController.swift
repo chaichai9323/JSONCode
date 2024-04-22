@@ -8,6 +8,7 @@
 
 import UIKit
 import JSONCodeSwiftMacro
+import OtherLib
 
 @JSONCode
 struct Info {
@@ -55,8 +56,17 @@ class ViewController: UIViewController {
         }
         
         msgLab.text = str
+        
+        testOther()
     }
 
+    func testOther() {
+        
+        if let p = try? JSONDecoder().decode(OtherLibProperty.self, from: js.data(using: .utf8)!) {
+            print(p.name)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
