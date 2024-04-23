@@ -13,7 +13,72 @@ import JSONCode
 import JSONCodeMacros
 #endif
 
+enum GEN {
+    case F
+    case M
+    
+    var desc: String {
+        "性别: \(self == .F ? "女" : "男")"
+    }
+}
+
+@JSONCode
+class Person {
+    @JSONCodeKey("mingzi", "mz")
+    var name: String = "默认名字"
+    
+    @JSONCodeMapper(String.self, { s -> GEN in
+        if s.lowercased().prefix(1) == "f" {
+            return .F
+        } else {
+            return .M
+        }
+    }, { s -> String in
+        switch s {
+            case .F: return "Female"
+            case .M: return "Male"
+        }
+    })
+    var gender: GEN = .F
+    
+    var desc: String {
+        "名字:\(name)"
+    }
+}
+
+@JSONCodeSub
+class Student: Person {
+    @JSONCodeKey("nj")
+    var grade: String = "默认年级"
+    @JSONCodeKey("bj")
+    var clbum: Int = 1
+    
+    override var desc: String {
+        "学生名字:\(name) \(gender.desc), 年级:\(grade), 班级:\(clbum)"
+    }
+}
+
+
+
 final class JSONCodeTests: XCTestCase {
+    
+    func testJsonModel() throws {
+        let js = """
+        {
+            "mingzi": "Terry",
+            "gender": "m",
+            "nj": "3年级",
+            "bj": 1
+        }
+        """
+        
+        let p = try JSONDecoder().decode(Student.self, from: js.data(using: .utf8)!)
+        XCTAssertEqual(p.name, "Terry")
+        XCTAssertEqual(p.gender, .M)
+//        let dat = try JSONEncoder().encode(p)
+//        print(String(data: dat, encoding: .utf8)!)
+        
+    }
     
     func testJSONCodeMacro() {
 #if canImport(JSONCodeMacros)
@@ -48,22 +113,6 @@ final class JSONCodeTests: XCTestCase {
     macros:[
         "JSONCode": JSONCodeMacro.self
     ])
-#endif
-    }
-    
-    func testMacro() {
-#if canImport(JSONCodeMacros)
-        assertMacroExpansion(
-            """
-            #stringify(a + b)
-            """,
-            expandedSource: """
-            (a + b, "a + b")
-            """,
-            macros: [
-                "stringify": StringifyMacro.self
-            ]
-        )
 #endif
     }
 }

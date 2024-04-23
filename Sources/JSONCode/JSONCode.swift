@@ -10,3 +10,6 @@ public macro JSONCode() = #externalMacro(module: "JSONCodeMacros", type: "JSONCo
 
 @attached(member, names: arbitrary)
 public macro JSONCodeSub() = #externalMacro(module: "JSONCodeMacros", type: "JSONCodeSubMacro")
+
+@attached(peer)
+public macro JSONCodeMapper<I: Codable, O: Any>(_ key: I.Type, _ from: (I) -> O, _ to: (O) -> I) = #externalMacro(module: "JSONCodeMacros", type: "JSONCodeMapperMacro")

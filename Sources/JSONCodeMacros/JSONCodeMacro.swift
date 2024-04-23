@@ -16,6 +16,14 @@ public struct JSONCodeKeyMacro: PeerMacro {
     
 }
 
+public struct JSONCodeMapperMacro: PeerMacro {
+    
+    public static func expansion(of node: SwiftSyntax.AttributeSyntax, providingPeersOf declaration: some SwiftSyntax.DeclSyntaxProtocol, in context: some SwiftSyntaxMacros.MacroExpansionContext) throws -> [SwiftSyntax.DeclSyntax] {
+        return []
+    }
+    
+}
+
 //MARK: - JSON 模型
 public struct JSONCodeMacro: ExtensionMacro, MemberMacro {
     
@@ -65,6 +73,7 @@ public struct JSONCodeSubMacro: MemberMacro {
 struct JSONCodePlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         JSONCodeKeyMacro.self,
+        JSONCodeMapperMacro.self,
         JSONCodeMacro.self,
         JSONCodeSubMacro.self
     ]
