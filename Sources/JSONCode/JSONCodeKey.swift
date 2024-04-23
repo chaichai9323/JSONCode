@@ -39,6 +39,22 @@ public extension KeyedDecodingContainer where K == JSONCodeKey {
         
         throw NSError(domain: "没有找到key: \(keys.joined(separator: ","))", code: 0)
     }
+    
+    func decode<T: Decodable, R: Any>(
+        _ type: T.Type,
+        jsonKeys keys: [String],
+        transform: (T) -> R
+    ) throws -> R {
+        
+        for k in keys {
+            if let res = try? decode(type, forKey: JSONCodeKey(k)) {
+               return transform(res)
+            }
+        }
+        
+        throw NSError(domain: "没有找到key: \(keys.joined(separator: ","))", code: 0)
+    }
+    
 }
 
 public extension KeyedEncodingContainer where K == JSONCodeKey {
@@ -48,5 +64,22 @@ public extension KeyedEncodingContainer where K == JSONCodeKey {
         }
         
         try encodeIfPresent(value, forKey: JSONCodeKey(key))
+    }
+    
+    mutating func encode<T: Any, R: Encodable>(
+        _ value: T?,
+        jsonKeys keys: [String],
+        transform: (T) -> R
+    ) throws {
+        guard let key = keys.first else {
+            throw NSError(domain: "没有指定key: \(keys.joined(separator: ","))", code: 0)
+        }
+        
+        guard let v = value else {
+            try encodeNil(forKey: JSONCodeKey(key))
+            return
+        }
+        
+        try encodeIfPresent(transform(v), forKey: JSONCodeKey(key))
     }
 }

@@ -17,10 +17,39 @@ struct Info {
     var addr: String?
 }
 
+struct Role {
+    
+    enum TYPE: String {
+        case zs = "mad warrior"
+        case zhanshi = "战士"
+        case empty
+        
+        var value: String {
+            switch self {
+                case .zs, .zhanshi: return "zhanshi"
+                case .empty : return ""
+            }
+        }
+    }
+    
+    var typeValue: TYPE
+    
+    init(txt: String) {
+        self.typeValue = .init(rawValue: txt) ?? .empty
+    }
+    
+    var type: String {
+        return typeValue.value
+    }
+}
+
 @JSONCode
 struct Person: Codable {
     @JSONCodeKey("mz")
     var name: String?
+    
+    @JSONCodeMapper(String.self, { Role(txt: $0) }, { $0.type })
+    var role: Role
     
     var info: Info?
 }
@@ -31,6 +60,7 @@ class ViewController: UIViewController {
 {
     "name": "chaichai",
     "animation": "pop",
+    "role": "mad warrior",
     "info": {
         "phone": "138 xxxx xxxx",
         "address": "chengdu"

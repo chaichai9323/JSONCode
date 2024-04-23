@@ -29,11 +29,34 @@ https://github.com/chaichai9323/JSONCode.git
 
 ```swift
 
+enum GEN {
+    case F
+    case M
+    
+    var desc: String {
+        "性别: \(self == .F ? "女" : "男")"
+    }
+}
+
 @JSONCode
 class Person {
     @JSONCodeKey("mingzi", "mz")
     var name: String = "默认名字"
-    
+
+    @JSONCodeMapper(String.self, { s -> GEN in
+        if s.lowercased().prefix(1) == "f" {
+            return .F
+        } else {
+            return .M
+        }
+    }, { s -> String in
+        switch s {
+            case .F: return "Female"
+            case .M: return "Male"
+        }
+    })
+    var gender: GEN = .F
+
     var desc: String {
         "名字:\(name)"
     }
