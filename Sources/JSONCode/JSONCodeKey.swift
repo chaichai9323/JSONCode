@@ -37,6 +37,12 @@ public extension KeyedDecodingContainer where K == JSONCodeKey {
             }
         }
         
+        for k in keys {
+            if let res = try? decode(JSONNumber<T>.self, forKey: JSONCodeKey(k)) {
+                return res.value
+            }
+        }
+        
         throw NSError(domain: "没有找到key: \(keys.joined(separator: ","))", code: 0)
     }
     
