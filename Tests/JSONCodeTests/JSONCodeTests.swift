@@ -59,6 +59,20 @@ class Student: Person {
 }
 
 
+@JSONCode
+class Resp<T: Codable>: NSObject, Codable {
+    var code: Int?
+    var msg: String?
+    var data: T?
+}
+
+let rjs = """
+{
+    "code": 200,
+    "msg": "success",
+    "data": true
+}
+"""
 
 final class JSONCodeTests: XCTestCase {
     
@@ -75,6 +89,16 @@ final class JSONCodeTests: XCTestCase {
         let p = try JSONDecoder().decode(Student.self, from: js.data(using: .utf8)!)
         XCTAssertEqual(p.name, "Terry")
         XCTAssertEqual(p.gender, .M)
+        
+        
+        do {
+            let m = try JSONDecoder().decode(Resp<Int>.self, from: rjs.data(using: .utf8)!)
+            if m.code == 200 {
+                print(m.data!)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
 //        let dat = try JSONEncoder().encode(p)
 //        print(String(data: dat, encoding: .utf8)!)
         
