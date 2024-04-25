@@ -265,21 +265,10 @@ extension PatternBindingSyntax {
         var isOption: Bool = false
         
         if let varType = typeAnnotation?.type {
-            var kind: IdentifierTypeSyntax?
-            if let typeSyn = varType.as(OptionalTypeSyntax.self) {
-                kind = typeSyn.wrappedType.as(IdentifierTypeSyntax.self)
+            if varType.is(OptionalTypeSyntax.self) {
                 isOption = true
-            } else {
-                kind = varType.as(IdentifierTypeSyntax.self)
             }
-            if let token = kind?.name {
-                switch token.tokenKind {
-                    case .identifier(let t):
-                        type = t
-                    default:
-                        type = nil
-                }
-            }
+            type = varType.description
         } else if let value = initializer?.value {
             if value.is(StringLiteralExprSyntax.self) {
                 type = "String"

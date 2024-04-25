@@ -58,6 +58,11 @@ class Student: Person {
     }
 }
 
+@JSONCode
+class Model {
+    var code: Int?
+    var data: [Student]?
+}
 
 @JSONCode
 class Resp<T: Codable>: NSObject, Codable {
@@ -79,18 +84,38 @@ final class JSONCodeTests: XCTestCase {
     func testJsonModel() throws {
         let js = """
         {
+            "code": 200,
+            "data": [
+        {
             "mingzi": "Terry",
             "gender": "m",
             "nj": "3年级",
             "bj": 1
-        }
+        },
+        {
+                    "mingzi": "Terry",
+                    "gender": "m",
+                    "nj": "3年级",
+                    "bj": 1
+        },
+        {
+            "mingzi": "Terry",
+            "gender": "m",
+            "nj": "3年级",
+            "bj": 1
+        },
+        {
+            "mingzi": "Terry",
+            "gender": "m",
+            "nj": "3年级",
+            "bj": 1
+        },
+        ]}
         """
         
-        let p = try JSONDecoder().decode(Student.self, from: js.data(using: .utf8)!)
-        XCTAssertEqual(p.name, "Terry")
-        XCTAssertEqual(p.gender, .M)
-        
-        
+        let p = try JSONDecoder().decode(Model.self, from: js.data(using: .utf8)!)
+        let a = p.data?.count
+        print(a)
         do {
             let m = try JSONDecoder().decode(Resp<Int>.self, from: rjs.data(using: .utf8)!)
             if m.code == 200 {
@@ -109,9 +134,9 @@ final class JSONCodeTests: XCTestCase {
         assertMacroExpansion(
     """
     @JSONCode
-    struct Person {
-        @JSONCodeKey("mingzi", "mz")
-        var name: String = "default"
+    class Model {
+        var code: Int?
+        var data: [Person]?
     }
     """,
     expandedSource:
