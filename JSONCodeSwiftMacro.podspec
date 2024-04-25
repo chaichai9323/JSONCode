@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JSONCodeSwiftMacro'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'Define a macro. Parse json using the Codable'
   
   # This description is used to generate tags and improve search results.
