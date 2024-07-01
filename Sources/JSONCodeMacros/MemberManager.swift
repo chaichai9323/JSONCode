@@ -75,6 +75,9 @@ container.decode(Swift.type(of: self.\(property.name)), jsonKeys: \(property.jso
     }
     
     var decoder: String {
+        guard propertyList.count > 0 else {
+            return ""
+        }
         let subStr = isSubClass ? "\ntry super.init(from: decoder)" : ""
         return """
         \(prefix)public init(from decoder: any Decoder) throws {
@@ -97,6 +100,9 @@ container.decode(Swift.type(of: self.\(property.name)), jsonKeys: \(property.jso
     }
     
     var encoder: String {
+        guard propertyList.count > 0 else {
+            return ""
+        }
         let subStr = isSubClass ? "try super.encode(to: encoder)\n" : ""
         return """
         \(isSubClass ? "override " : "")public func encode(to encoder: any Encoder) throws {
@@ -270,7 +276,11 @@ extension PatternBindingSyntax {
             }
             type = varType.description
         } else if let value = initializer?.value {
-            if value.is(StringLiteralExprSyntax.self) {
+            if let memValue  = value.as(MemberAccessExprSyntax.self) {
+                if let base = memValue.base?.as(DeclReferenceExprSyntax.self) {
+                    type = base.baseName.text
+                }
+            } else if value.is(StringLiteralExprSyntax.self) {
                 type = "String"
             } else if value.is(IntegerLiteralExprSyntax.self) {
                 type = "Int"
